@@ -1,0 +1,12 @@
+*{
+    background-color: black;
+}
+.submit_btn{
+    display: flex;
+    justify-content: center;
+}
+.input_box{
+    position: fixed;
+    bottom: 0%;
+    width: 100%;   
+}

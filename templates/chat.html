@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %} chat {% endblock %}
+
+{% block main %}
+
+Chat
+{% for row in msg_row %}
+<div class="container darker">
+    <!-- <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right"> -->
+    <p>{{ row["message"] }}</p>
+    <span class="time-left">{{ row["datetime"] }}</span>
+  </div>
+{% endfor %}
+<form action="/chat" method="post">
+    <div class="input-group mb-3 input_box">
+        <input type="text" class="form-control" placeholder="Your message" aria-label="message" id ="message" name = "message" aria-describedby="basic-addon2">
+        <button type="submit" class="btn btn-primary">Send</button>
+    </div>
+</form>
+
+{% endblock %}

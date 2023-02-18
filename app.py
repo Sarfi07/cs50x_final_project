@@ -3,9 +3,11 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from cs50 import SQL
 
-from helpers import login_required
+from helpers import login_required, apology
+from datetime import datetime
 
 app = Flask(__name__)
+now = datetime.now()
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
@@ -104,4 +106,20 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+@app.route("/chat", methods=["GET", "POST"])
+@login_required
+def chat():
+    # chat feature
+    user_id = session["user_id"]
+
+    # TODO display previous chat messeges
+
+    if request.method == "GET":
+        return render_template("chat.html")
+    
+    else:
+        message = request.form.get("message")
+        db.execute("INSERT INTO messages (user_id, message, datetime) VALUES(?, ?, ?)", user_id, message, now)
+
+        return redirect("/chat")
 
