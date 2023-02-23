@@ -115,11 +115,11 @@ def chat():
     # TODO display previous chat messeges
 
     if request.method == "GET":
-        return render_template("chat.html")
+        messages = db.execute("SELECT message, datetime, users.first_name FROM messages JOIN users ON messages.user_id=users.id")
+        return render_template("chat.html", messages=messages)
     
     else:
         message = request.form.get("message")
         db.execute("INSERT INTO messages (user_id, message, datetime) VALUES(?, ?, ?)", user_id, message, now)
-
         return redirect("/chat")
 
