@@ -123,3 +123,15 @@ def chat():
         db.execute("INSERT INTO messages (user_id, message, datetime) VALUES(?, ?, ?)", user_id, message, now)
         return redirect("/chat")
 
+@app.route("/create_card", methods=["GET", "POST"])
+@login_required
+def create_card():
+    user_id = session["user_id"]
+    if request.method == "GET":
+        return render_template("create_card.html")
+    
+    else:
+        title = request.form.get("title")
+        content = request.form.get("content")
+        db.execute("INSERT INTO cards (user_id, title, content) VALUES(?, ?, ?)", user_id, title, content)
+        return redirect("/")
