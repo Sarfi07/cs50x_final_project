@@ -16,9 +16,10 @@
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Sangeetkar</a>
-            <button class="navbar-bs-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="border: 9px solid black;">
+            <a class="navbar-brand" href="/">Sangeetkar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+                style="border: 9px solid black;">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -31,7 +32,7 @@
                         <a class="nav-link" href="/chat">Chat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="/profile">Profile</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="/logout">LogOut</a>
@@ -47,14 +48,16 @@
         </div>
     </nav>
 
-    <header></header>
+    <header>{% block header %}{% endblock %}</header>
     <main>
         {% block main %}{% endblock %}
     </main>
     <footer class="mt-auto text-center">
         This Website is developed by Sarfaroj Ansari
-        
+
     </footer>
+
+    
 
 </body>
 

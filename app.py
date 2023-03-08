@@ -21,9 +21,12 @@ db = SQL("sqlite:///sangeetkar.db")
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    user_id = session["user_id"]
+    name = db.execute("SELECT first_name, last_name FROM users WHERE id = ?", user_id)
+    cards = db.execute("SELECT cards.title, cards.content, users.first_name FROM cards JOIN users ON cards.user_id = users.id")
+    return render_template("index.html", name=name, cards=cards)
 
-
+ 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -115,14 +118,28 @@ def chat():
     # TODO display previous chat messeges
 
     if request.method == "GET":
-        messages = db.execute("SELECT message, datetime, users.first_name FROM messages JOIN users ON messages.user_id=users.id")
-        return render_template("chat.html", messages=messages)
+        # SELECT query for getting messages from the database
+        msg_row = db.execute("SELECT users.first_name, message, datetime FROM messages JOIN users ON messages.user_id = users.id;")
+            # displaying message, sender'name, timestamp
+
+        return render_template("chat.html", msg_row=msg_row)
     
     else:
         message = request.form.get("message")
         db.execute("INSERT INTO messages (user_id, message, datetime) VALUES(?, ?, ?)", user_id, message, now)
+
         return redirect("/chat")
 
+@app.route("/profile", methods=["GET","POST"])
+@login_required
+def profile():
+    user_id = session["user_id"]
+
+    if request.method == "GET":
+        details = db.execute("SELECT * FROM users WHERE id = ?", user_id)
+        count = db.execute("SELECT COUNT(title) FROM cards WHERE user_id=?", user_id)
+        return render_template("profile.html", details=details, count=count)
+    
 @app.route("/create_card", methods=["GET", "POST"])
 @login_required
 def create_card():

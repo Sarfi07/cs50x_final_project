@@ -2,14 +2,44 @@
 
 {% block title %} Home {% endblock %}
 
+{% block header %}
+<div id="name">
+  <h3>Hello {{ name[0]["first_name"] }} {{ name[0]["last_name"] }} </h3><hr>
+</div>
+
+{% endblock %}
+
 {% block main %}
 
-Home
-<a href="/create_card" class="btn-primary">Create Card</a>
+<a href="/create_card" class=" btn btn-primary" id="create_card">Create Card</a>
+<br>
+<hr>
+<h3 class="center heading">Cards</h3>
 
-<h3>Cards</h3>
+{% for card in cards %}
+<button type="button" class="collapsible">{{ card["title"] }}</button>
 
-
-
+<div class="content">
+  <i>Author: {{ card["first_name"] }}</i><hr>
+  <p>{{ card["content"] }}</p>
+</div>
+<br>
+{% endfor %}
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+  </script>
 
 {% endblock %}

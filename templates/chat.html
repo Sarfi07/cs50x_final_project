@@ -5,7 +5,7 @@
 {% block main %}
 
 <h1 style="text-align: center; outline-color: red;">Chat</h1>
-{% for row in messages %}
+{% for row in msg_row %}
 <div class="alert alert-primary msg_container" role="alert">
     <!-- <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right"> -->
     <h5 >{{ row["first_name"] }}</h5>

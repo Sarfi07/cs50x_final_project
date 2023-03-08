@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block main %}
+
+<p>{{ details[0]["first_name"] }}</p>
+<hr>
+<p>{{ details[0]["last_name"] }}</p>
+<hr>
+<p>{{ details[0]["phone_number"] }}</p>
+<hr>
+<p>Number of Cards published: <b>{{ count[0]["COUNT(title)"] }}</b></p>
+
+{% endblock %}
