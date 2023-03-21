@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/login" method="post">
+<div id="login_form">
+    <form action="/login" method="post" class="form_content">
         <div class="mb-3">
             <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
         </div>
@@ -17,4 +18,5 @@
         </div>
         
     </form>
+</div>
 {% endblock %}
