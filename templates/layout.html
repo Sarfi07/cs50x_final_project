@@ -18,7 +18,9 @@
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg bg-body-emphasis">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Sangeetkar</a>
+            <a class="navbar-brand" href="/">Sangeetkar
+                <img src="static/favicon_io/favicon-32x32.png" alt="logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
@@ -41,7 +43,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/profile">Profile</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="logout_btn">
                         <a href="/logout" class="nav-link">Logout</a>
                     </li>
                 </ul>
@@ -62,7 +64,7 @@
     <main>
         {% block main %}{% endblock %}
     </main>
-    <footer class="mt-auto text-center">
+    <footer class="mt-auto text-center bg-dark">
         This Website is developed by Sarfaroj Ansari
 
     </footer>
